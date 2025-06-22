@@ -16,15 +16,15 @@ This repository is organized by module or homework assignment. Each assignment t
 
 Below is a list of the homework assignments completed. Click on the links to navigate to the specific homework directory.
 
-| Module / Week | Homework Topic                                  | Directory                                     | Status      |
-|---------------|-------------------------------------------------|-----------------------------------------------|-------------|
-| 01 - Intro    | Introduction to LLMs, Search & Elasticsearch    | [01-intro](./01-intro/)                       | Completed   |
-| 02 - Ollama   | Running LLMs Locally with Ollama & Prompting    | [02-ollama](./02-ollama/)                     | To Do       |
-| 03 - RAG      | Retrieval Augmented Generation (RAG)            | [03-rag](./03-rag/)                         | To Do       |
-| 04 - Fine-tuning | Fine-tuning LLMs                             | [04-fine-tuning](./04-fine-tuning/)            | To Do       |
-| 05 - Deployment | Deploying LLM Applications                     | [05-deployment](./05-deployment/)              | To Do       |
-| 06 - Projects | Capstone Project Work                          | [06-projects](./06-projects/)                  | To Do       |
-| ...           | *(More modules/homeworks as they are completed)* | *(Link to directory)*                         | *(Status)*  |
+| Module / Week | Homework Topic                                  | Directory                                            | Status      |
+|---------------|-------------------------------------------------|------------------------------------------------------|-------------|
+| 01 - Intro    | Introduction to LLMs, Search & Elasticsearch    | [01-intro](./01-intro/)                              | Completed   |
+| 02 - Vector Search | Vector Search with Qdrant & fastembed        | [02-vector-search](./02-vector-search/)              | Completed   |
+| 03 - RAG      | Retrieval Augmented Generation (RAG)            | [03-rag](./03-rag/)                                  | To Do       |
+| 04 - Fine-tuning | Fine-tuning LLMs                             | [04-fine-tuning](./04-fine-tuning/)                   | To Do       |
+| 05 - Deployment | Deploying LLM Applications                     | [05-deployment](./05-deployment/)                     | To Do       |
+| 06 - Projects | Capstone Project Work                          | [06-projects](./06-projects/)                         | To Do       |
+| ...           | *(More modules/homeworks as they are completed)* | *(Link to directory)*                                | *(Status)*  |
 
 *(You will need to update this table as you complete more homeworks and create the corresponding directories.)*
 
@@ -62,6 +62,3 @@ The solutions and code in this repository represent my personal understanding an
 
 A big thank you to the [DataTalks.Club](https://datatalks.club/) team for organizing this comprehensive and practical LLM Zoomcamp.
 
----
-
-Happy Learning!
