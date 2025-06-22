@@ -26,7 +26,6 @@ Below is a list of the homework assignments completed. Click on the links to nav
 | 06 - Projects | Capstone Project Work                          | [06-projects](./06-projects/)                         | To Do       |
 | ...           | *(More modules/homeworks as they are completed)* | *(Link to directory)*                                | *(Status)*  |
 
-*(You will need to update this table as you complete more homeworks and create the corresponding directories.)*
 
 ## General Setup and Tools
 
