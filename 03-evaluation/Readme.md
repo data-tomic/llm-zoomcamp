@@ -37,7 +37,8 @@ The entire workflow, including data download, indexing, and evaluation for all h
 
 To run the evaluation, simply execute the script:
 ```bash
-python homework.py```
+python homework.py
+```
 The script will print the results for each question to the console. The first run may take a few minutes as it needs to download the datasets and the sentence transformer model.
 
 ## Results Summary
