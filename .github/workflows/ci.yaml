@@ -10,12 +10,9 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     
-    # === THIS IS THE KEY FIX ===
-    # Set the default working directory for all steps in this job
     defaults:
       run:
         working-directory: ./06-project 
-    # ==========================
 
     steps:
       - name: Checkout repository
@@ -26,20 +23,24 @@ jobs:
         with:
           python-version: '3.11'
 
+      # === THIS IS THE KEY FIX ===
+      # This step now installs BOTH the tools needed for CI AND the project's dependencies
       - name: Install dependencies
-        # This command will now run inside the ./06-project directory
         run: |
           python -m pip install --upgrade pip
-          pip install "black[jupyter]"
+          # Explicitly install the tools needed for the linting/formatting step
+          pip install "black[jupyter]" flake8
+          # Now, install the production dependencies from the requirements file
           pip install -r requirements.txt
+      # ==========================
 
       - name: Lint and Format Check
-        # This command will also run inside ./06-project
         run: |
+          # This step will now succeed because flake8 and black are installed
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           black --check .
 
       - name: Build Docker Image
-        # And finally, this command will find the Dockerfile
         run: |
+          # This step will succeed because requirements.txt is minimal and correct
           docker build -t clinical-rag-etl-ci-build .
