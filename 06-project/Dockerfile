@@ -7,7 +7,7 @@ LABEL description="ETL pipeline for Clinical Recommendations RAG project."
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
 
-# Install system dependencies, now with Python 3.11
+# Install system dependencies, with Python 3.11
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3.11 \
     python3.11-venv \
@@ -24,10 +24,7 @@ RUN ln -s /usr/bin/python3.11 /usr/bin/python
 WORKDIR /app
 COPY requirements.txt .
 
-# Install paddlepaddle-gpu first, as it's a large and specific dependency.
-RUN pip install --no-cache-dir paddlepaddle-gpu==2.6.1 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
-
-# Install the rest of the dependencies
+# Install the production dependencies. This will be much faster and smaller.
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Stage 3: Copy the application code

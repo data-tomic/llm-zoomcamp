@@ -8,4 +8,5 @@ sentence-transformers
 langchain
 
 # Note: Libraries like torch, numpy, etc., are automatically
-# installed as dependencies of sentence-transformers.
+# installed as dependencies of sentence-transformers. This list
+# only needs the top-level packages our code directly imports.
