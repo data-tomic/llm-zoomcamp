@@ -1,0 +1,11 @@
+# deployment/shared-services-manifests/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# It's good practice to create namespaces for your applications
+resources:
+  - 01-chromadb-statefulset.yaml
+  - 02-open-webui-deployment.yaml
+
+# This will create the namespaces if they don't exist
+namespace: chromadb # This is a default, but each resource specifies its own

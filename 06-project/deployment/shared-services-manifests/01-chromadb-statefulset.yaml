@@ -1,0 +1,46 @@
+# deployment/shared-services-manifests/01-chromadb-statefulset.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: chromadb
+  namespace: chromadb # We recommend a dedicated namespace
+spec:
+  ports:
+    - port: 8000
+      targetPort: 8000
+  selector:
+    app: chromadb
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: chromadb
+  namespace: chromadb
+spec:
+  serviceName: "chromadb"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chromadb
+  template:
+    metadata:
+      labels:
+        app: chromadb
+    spec:
+      containers:
+        - name: chromadb
+          image: chromadb/chroma:0.5.0 # Use a specific, stable version
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - name: storage
+              mountPath: "/chroma/.chroma"
+  volumeClaimTemplates:
+    - metadata:
+        name: storage
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: "longhorn" # Assumes Longhorn is your default storage class
+        resources:
+          requests:
+            storage: 10Gi # Adjust as needed

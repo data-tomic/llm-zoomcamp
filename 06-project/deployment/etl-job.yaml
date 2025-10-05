@@ -1,0 +1,47 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: clinical-rag-etl-job
+  namespace: vseznayka
+spec:
+  activeDeadlineSeconds: 3600 # 1 hour
+  backoffLimit: 2
+  template:
+    spec:
+      containers:
+        - name: etl-pipeline
+          image: your-docker-registry/clinical-rag-etl:1.0.0
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: MINIO_URL
+              value: "minio.minio.svc.cluster.local:9000"
+            - name: MINIO_BUCKET_NAME
+              value: "clinical-recommendations"
+            - name: MINIO_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minio-credentials
+                  key: accessKey
+            - name: MINIO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minio-credentials
+                  key: secretKey
+            - name: CHROMA_HOST
+              value: "chromadb.chromadb.svc.cluster.local"
+            - name: CHROMA_PORT
+              value: "8000"
+            - name: SENTENCE_TRANSFORMERS_HOME
+              value: "/huggingface_cache"
+          resources:
+            limits:
+              nvidia.com/gpu: 1
+          volumeMounts:
+            - name: huggingface-cache
+              mountPath: "/huggingface_cache"
+      nodeSelector:
+        nvidia.com/gpu.present: "true"
+      volumes:
+        - name: huggingface-cache
+          emptyDir: {}
+      restartPolicy: OnFailure
