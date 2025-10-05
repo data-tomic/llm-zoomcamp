@@ -1,6 +1,6 @@
 # Project: Clinical RAG Assistant "Vseznayka"
 
-[![Python Application CI](https://github.com/sergplekhov/llm-zoomcamp/actions/workflows/ci.yaml/badge.svg)](https://github.com/sergplekhov/llm-zoomcamp/actions/workflows/ci.yaml)
+[![Python Application CI](https://github.com/data-tomic/llm-zoomcamp/actions/workflows/ci.yaml/badge.svg)](https://github.com/data-tomic/llm-zoomcamp/actions/workflows/ci.yaml)
 
 ### Project Vision and Background
 
