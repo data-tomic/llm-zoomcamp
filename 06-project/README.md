@@ -1,5 +1,7 @@
 # Project: Clinical RAG Assistant "Vseznayka"
 
+[![Python Application CI](https://github.com/sergplekhov/llm-zoomcamp/actions/workflows/ci.yaml/badge.svg)](https://github.com/sergplekhov/llm-zoomcamp/actions/workflows/ci.yaml)
+
 ### Project Vision and Background
 
 This project began as a final submission for the **DataTalksClub LLM Zoomcamp**. However, given the real-world applicability of the technology, it quickly evolved into a high-fidelity pilot project designed to demonstrate the potential of Large Language Models to key business stakeholders at a leading medical center.
