@@ -6,6 +6,8 @@ LABEL description="ETL pipeline for Clinical Recommendations RAG project."
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
+# The following line prevents pip from complaining about running as root.
+ENV PIP_ROOT_USER_ACTION=ignore
 
 # Install system dependencies, with Python 3.11
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -24,8 +26,16 @@ RUN ln -s /usr/bin/python3.11 /usr/bin/python
 WORKDIR /app
 COPY requirements.txt .
 
-# Install the production dependencies. This will be much faster and smaller.
-RUN pip install --no-cache-dir -r requirements.txt
+# === THIS IS THE KEY FIX ===
+# Install PyTorch and its dependencies first, pointing to the official index URL for CUDA 12.1.
+# This downloads a smaller PyTorch binary that links against the system's CUDA libraries
+# instead of bundling its own, saving several gigabytes of disk space.
+RUN python -m pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cu121
+
+# Now, install the rest of the production dependencies from our minimal requirements file.
+# Pip will see that torch is already installed and will skip it.
+RUN python -m pip install --no-cache-dir -r requirements.txt
+# ===========================
 
 # Stage 3: Copy the application code
 COPY ./etl ./etl
