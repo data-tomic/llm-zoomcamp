@@ -30,7 +30,7 @@ CHROMA_COLLECTION_NAME = os.getenv("CHROMA_COLLECTION_NAME", "clinical_recommend
 # Vectorization Configuration
 EMBEDDING_MODEL_NAME = "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
 CHUNK_SIZE = 1024  # The number of characters in each chunk
-CHUNK_OVERLAP = 128   # The number of characters to overlap between chunks
+CHUNK_OVERLAP = 128  # The number of characters to overlap between chunks
 
 # Logging Configuration
 LOG_LEVEL = "INFO"

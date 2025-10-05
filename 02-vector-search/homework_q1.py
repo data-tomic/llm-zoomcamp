@@ -2,10 +2,10 @@ from fastembed import TextEmbedding
 import numpy as np
 
 # Текст запроса
-query = 'I just discovered the course. Can I join now?'
+query = "I just discovered the course. Can I join now?"
 
 # Имя модели
-model_name = 'jinaai/jina-embeddings-v2-small-en'
+model_name = "jinaai/jina-embeddings-v2-small-en"
 
 # Создание объекта модели эмбеддингов
 embedding_model = TextEmbedding(model_name=model_name)

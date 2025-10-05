@@ -3,14 +3,13 @@ import random
 from fastmcp import FastMCP
 
 # This will act as our simple in-memory database
-known_weather_data = {
-    'berlin': 20.0
-}
+known_weather_data = {"berlin": 20.0}
 
 # --- MCP Server Setup ---
 mcp = FastMCP("Demo 🚀")
 
 # --- Tool Definitions ---
+
 
 @mcp.tool
 def get_weather(city: str) -> float:
@@ -45,7 +44,8 @@ def set_weather(city: str, temp: float) -> str:
     """
     city = city.strip().lower()
     known_weather_data[city] = temp
-    return 'OK'
+    return "OK"
+
 
 # --- Run the server ---
 if __name__ == "__main__":

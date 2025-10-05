@@ -2,9 +2,11 @@ from fastembed import TextEmbedding
 import numpy as np
 
 # --- Код из Q1 для получения query_embedding ---
-query = 'I just discovered the course. Can I join now?'
-model_name = 'jinaai/jina-embeddings-v2-small-en'
-embedding_model = TextEmbedding(model_name=model_name, cache_dir="local_cache") # Добавил cache_dir для возможного ускорения
+query = "I just discovered the course. Can I join now?"
+model_name = "jinaai/jina-embeddings-v2-small-en"
+embedding_model = TextEmbedding(
+    model_name=model_name, cache_dir="local_cache"
+)  # Добавил cache_dir для возможного ускорения
 
 query_embedding_list = list(embedding_model.embed([query]))
 query_embedding = None
@@ -17,7 +19,7 @@ else:
 
 
 # --- Код для Q2 ---
-doc_text_q2 = 'Can I still join the course after the start date?'
+doc_text_q2 = "Can I still join the course after the start date?"
 
 # Получение эмбеддинга для документа
 doc_embedding_list_q2 = list(embedding_model.embed([doc_text_q2]))

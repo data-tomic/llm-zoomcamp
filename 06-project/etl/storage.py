@@ -14,12 +14,13 @@ try:
         config.MINIO_URL,
         access_key=config.MINIO_ACCESS_KEY,
         secret_key=config.MINIO_SECRET_KEY,
-        secure=False  # Set to True if you have TLS/SSL configured
+        secure=False,  # Set to True if you have TLS/SSL configured
     )
     logging.info("MinIO client initialized successfully.")
 except Exception as e:
     logging.error(f"Failed to initialize MinIO client: {e}")
     minio_client = None
+
 
 def ensure_bucket_exists(bucket_name: str):
     """Checks if a bucket exists and creates it if it doesn't."""
@@ -37,7 +38,13 @@ def ensure_bucket_exists(bucket_name: str):
     except S3Error as e:
         logging.error(f"Error checking or creating bucket '{bucket_name}': {e}")
 
-def upload_to_minio(bucket_name: str, object_name: str, content: bytes, content_type: str = "application/octet-stream"):
+
+def upload_to_minio(
+    bucket_name: str,
+    object_name: str,
+    content: bytes,
+    content_type: str = "application/octet-stream",
+):
     """
     Uploads content (bytes) to a specified MinIO bucket.
 
@@ -53,7 +60,7 @@ def upload_to_minio(bucket_name: str, object_name: str, content: bytes, content_
     try:
         content_stream = io.BytesIO(content)
         content_length = len(content)
-        
+
         minio_client.put_object(
             bucket_name,
             object_name,
@@ -61,6 +68,8 @@ def upload_to_minio(bucket_name: str, object_name: str, content: bytes, content_
             content_length,
             content_type=content_type,
         )
-        logging.info(f"Successfully uploaded '{object_name}' to bucket '{bucket_name}'.")
+        logging.info(
+            f"Successfully uploaded '{object_name}' to bucket '{bucket_name}'."
+        )
     except S3Error as e:
         logging.error(f"Failed to upload '{object_name}': {e}")
